@@ -13,10 +13,7 @@ router.use(bodyParser.urlencoded({ extended: true }));
 const storage = multer.memoryStorage();
 const upload = multer({storage : storage});
 
-router.get('/',upload.none(),(req,res)=>{
-  console.log('server is working');
-  res.status(200).json("Server is working");
-})
+
 
 
 // Route 1: Get chapters based on class and subject
