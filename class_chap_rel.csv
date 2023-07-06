@@ -1,0 +1,43 @@
+class,subject,mode,chapter_list
+6,science,exam,/chapter1/chapter2/
+7,english,practice,/chapter3/chapter4/chapter5/
+8,hindi,exam,/chapter6/
+9,maths,practice,/chapter7/chapter8/chapter9/
+10,social studies,exam,/chapter10/chapter11/
+11,physics,practice,/chapter12/chapter13/
+12,chemistry,exam,/chapter14/chapter15/
+6,english,exam,/chapter16/
+7,maths,practice,/chapter17/chapter18/
+8,science,exam,/chapter19/chapter20/
+9,hindi,practice,/chapter21/chapter22/
+10,physics,exam,/chapter23/
+11,chemistry,practice,/chapter24/chapter25/
+12,social studies,exam,/chapter26/chapter27/chapter28/
+6,hindi,practice,/chapter29/chapter30/
+7,maths,exam,/chapter31/
+8,english,practice,/chapter32/chapter33/
+9,science,exam,/chapter34/chapter35/
+10,social studies,practice,/chapter36/
+11,hindi,exam,/chapter37/chapter38/
+12,maths,practice,/chapter39/chapter40/
+6,science,exam,/chapter41/
+7,english,practice,/chapter42/chapter43/
+8,hindi,exam,/chapter44/chapter45/
+9,maths,practice,/chapter46/
+10,social studies,exam,/chapter47/chapter48/
+11,physics,practice,/chapter49/chapter50/
+12,chemistry,exam,/chapter51/chapter52/
+6,english,exam,/chapter53/
+7,maths,practice,/chapter54/chapter55/
+8,science,exam,/chapter56/
+9,hindi,practice,/chapter57/chapter58/
+10,physics,exam,/chapter59/
+11,chemistry,practice,/chapter60/chapter61/
+12,social studies,exam,/chapter62/chapter63/chapter64/
+6,hindi,practice,/chapter65/chapter66/
+7,maths,exam,/chapter67/
+8,english,practice,/chapter68/chapter69/
+9,science,exam,/chapter70/chapter71/
+10,social studies,practice,/chapter72/
+11,hindi,exam,/chapter73/chapter74/
+12,maths,practice,/chapter75/chapter76/

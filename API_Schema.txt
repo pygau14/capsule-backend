@@ -1,0 +1,26 @@
+INSERT INTO questions (class, subject, mode, chapter_id, test_set_id, question_text, option1, option2, option3, option4, correct_option, topic)
+VALUES ('11', 'Maths', 'Practice', 6, 6, 'Question 1', 'Option 1', 'Option 2', 'Option 3', 'Option 4', '2', 'Topic 2');
+INSERT INTO questions (class, subject, mode, chapter_id, test_set_id, question_text, option1, option2, option3, option4, correct_option, topic)
+VALUES ('11', 'Maths', 'Practice', 6, 6, 'Question 2', 'Option 1', 'Option 2', 'Option 3', 'Option 4', '1', 'Topic 2');
+INSERT INTO questions (class, subject, mode, chapter_id, test_set_id, question_text, option1, option2, option3, option4, correct_option, topic)
+VALUES ('11', 'Maths', 'Practice', 6, 6, 'Question 3', 'Option 1', 'Option 2', 'Option 3', 'Option 4', '2', 'Topic 2');
+INSERT INTO questions (class, subject, mode, chapter_id, test_set_id, question_text, option1, option2, option3, option4, correct_option, topic)
+VALUES ('11', 'Maths', 'Practice', 6, 6, 'Question 4', 'Option 1', 'Option 2', 'Option 3', 'Option 4', '1', 'Topic 2');
+INSERT INTO questions (class, subject, mode, chapter_id, test_set_id, question_text, option1, option2, option3, option4, correct_option, topic)
+VALUES ('11', 'Maths', 'Practice', 6, 6, 'Question 6', 'Option 1', 'Option 2', 'Option 3', 'Option 4', '2', 'Topic 2');
+INSERT INTO questions (class, subject, mode, chapter_id, test_set_id, question_text, option1, option2, option3, option4, correct_option, topic)
+VALUES ('11', 'Maths', 'Practice', 6, 6, 'Question 6', 'Option 1', 'Option 2', 'Option 3', 'Option 4', '1', 'Topic 2');
+INSERT INTO questions (class, subject, mode, chapter_id, test_set_id, question_text, option1, option2, option3, option4, correct_option, topic)
+VALUES ('11', 'Maths', 'Practice', 6, 6, 'Question 7', 'Option 1', 'Option 2', 'Option 3', 'Option 4', '2', 'Topic 2');
+INSERT INTO questions (class, subject, mode, chapter_id, test_set_id, question_text, option1, option2, option3, option4, correct_option, topic)
+VALUES ('11', 'Maths', 'Practice', 6, 6, 'Question 8', 'Option 1', 'Option 2', 'Option 3', 'Option 4', '1', 'Topic 2');
+INSERT INTO questions (class, subject, mode, chapter_id, test_set_id, question_text, option1, option2, option3, option4, correct_option, topic)
+VALUES ('11', 'Maths', 'Practice', 6, 6, 'Question 9', 'Option 1', 'Option 2', 'Option 3', 'Option 4', '2', 'Topic 2');
+INSERT INTO questions (class, subject, mode, chapter_id, test_set_id, question_text, option1, option2, option3, option4, correct_option, topic)
+VALUES ('11', 'Maths', 'Practice', 6, 6, 'Question 10', 'Option 1', 'Option 2', 'Option 3', 'Option 4', '1', 'Topic 2');
+
+
+
+
+
+question_set : - 11th chem , physics , maths both modes 
