@@ -71,7 +71,22 @@ router.post('/chapters',upload.none(), (req, res) => {
         console.error('Error executing MySQL query:', err);
         res.status(500).json({ error: 'Internal Server Error' });
       } else {
-        res.status(200).json(results);
+        const formattedResults = results.map(result => {
+          const options = [];
+  
+          if (result.option1) options.push(result.option1);
+          if (result.option2) options.push(result.option2);
+          if (result.option3) options.push(result.option3);
+          if (result.option4) options.push(result.option4);
+  
+          return {
+            id: result.id,
+            question: result.question,
+            option: options
+          };
+        });
+  
+        res.status(200).json(formattedResults);
       }
     });
   });
