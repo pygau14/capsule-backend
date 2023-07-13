@@ -185,8 +185,8 @@ router.get('/books',upload.none(), (req, res) => {
         class: book.class,
         subject: book.subject,
         book_name: book.book_name,
-        book_icon_url: `http://localhost:3000/book-icon/${book.book_icon_filename}`,
-        ebook_pdf_url: `http://localhost:3000/ebook-pdf/${book.ebook_filename}`
+        book_icon_url: `https://capsule-backend-wep6.onrender.com/book-icon/${book.book_icon_filename}`,
+        ebook_pdf_url: `https://capsule-backend-wep6.onrender.com/ebook-pdf/${book.ebook_filename}`
       };
     });
 
@@ -386,8 +386,8 @@ router.get('/fetchBooks/:user_id',upload.none(), (req, res) => {
             class: row.class,
             subject: row.subject,
             book_name: row.book_name,
-            book_icon_url: "http://localhost:3000/book-icon/"+row.book_icon_filename,
-            ebook_pdf_url: "http://localhost:3000/ebook-pdf/"+row.ebook_filename,
+            book_icon_url: "https://capsule-backend-wep6.onrender.com/book-icon/"+row.book_icon_filename,
+            ebook_pdf_url: "https://capsule-backend-wep6.onrender.com/ebook-pdf/"+row.ebook_filename,
           }));
 
           res.json(data);
