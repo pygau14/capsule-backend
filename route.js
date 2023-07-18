@@ -20,6 +20,49 @@ router.get('/',upload.none(),(req,res)=>{
   res.status(200).json("Server is working");
 })
 
+// route to fetch classes list
+// Route to get all classes
+router.get('/classes', (req, res) => {
+ 
+  const query = 'SELECT * FROM classes';
+
+  connection.query(query, (err, results) => {
+    
+
+    if (err) {
+      console.error('Error executing MySQL query:', err);
+      return res.status(500).json({ error: 'Database error' });
+    }
+
+    res.status(200).json(results);
+  });
+});
+
+// Route to get subjects for a particular class
+router.get('/subjects/:classId', (req, res) => {
+const classId = req.params.classId;
+
+
+  const query = `
+    SELECT s.subject_name
+    FROM subjects s
+    JOIN class_subjects cs ON cs.subject_id = s.id
+    WHERE cs.class_id = ?
+  `;
+
+  connection.query(query, [classId], (err, results) => {
+    
+
+    if (err) {
+      console.error('Error executing MySQL query:', err);
+      return res.status(500).json({ error: 'Database error' });
+    }
+
+    res.status(200).json(results);
+  });
+});
+
+
 
 // Route 1: Get chapters based on class and subject
 router.post('/chapters',upload.none(), (req, res) => {
