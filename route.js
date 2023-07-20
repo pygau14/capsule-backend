@@ -156,78 +156,84 @@ router.post('/chapters',upload.none(), (req, res) => {
 
 //route to calculate score
 router.post('/calculateResults',upload.none(), async  (req, res) => {
-  const { testId, subject, mode, className, selectedOptions, user_id } = req.body;
-  console.log(typeof(testId));
-  console.log(typeof(subject));
-  console.log(typeof(mode));
-  console.log(typeof(className));
-  console.log(typeof(selectedOptions));
-  console.log(typeof(user_id));
-
-  console.log(testId , subject , mode , className , selectedOptions , user_id);
-  const selectedOptionsArr = JSON.parse(selectedOptions);
-  console.log(selectedOptionsArr);
-  // Fetch correctOption from the 'questions' table based on the received parameters
-  const fetchQuery = `SELECT correct_option FROM questions WHERE test_set_id = ? AND subject = ? AND mode = ? AND class = ?`;
-  connection.query(fetchQuery, [testId, subject, mode, className], (error, results) => {
-    if (error) {
-      console.error('Error fetching correctOption:', error);
-      res.status(500).json({ error: 'Internal Server Error' });
-      return;
-    }
-
-    const correctOptions = results.map(result => result.correct_option);
-
-    // Calculate the rightAnswers, wrongAnswers, rightQuestionNo, wrongQuestionNo, complete, and totalQuestionNo
-    let rightAnswers = 0;
-    let rightQuestionNo = [];
-    let wrongAnswers = 0;
-    let wrongQuestionNo = [];
-    let notComplete = 0;
-    let complete = 0;
-    const totalQuestionNo = correctOptions.length;
-
-    console.log(typeof(selectedOptionsArr));
-
-    selectedOptionsArr.forEach((option, index) => {
-      if (option === correctOptions[index] && option !== 'Not Selected') {
-        rightAnswers++;
-        rightQuestionNo.push(index+1);
-      }
-      else if(option === 'Not Selected'){
-        notComplete++;
-        wrongAnswers++;
-      } else {
-        wrongAnswers++;
-        wrongQuestionNo.push(index+1); 
-      }
-    });
-
-    complete = ((rightAnswers + wrongAnswers-notComplete) / totalQuestionNo) * 100;
-
-    // Convert selectedOption array to a string
-    const selectedOptionString = selectedOptionsArr.join('+');
-
-    // Save the data into the user_history table
-    const saveQuery = `INSERT INTO user_history (user_id, test_set_id, selectedOptions, score) VALUES (?, ?, ?, ?)`;
-    connection.query(saveQuery, [user_id, testId, selectedOptionString, rightAnswers], (error, results) => {
+  try{
+    const { testId, subject, mode, className, selectedOptions, user_id } = req.body;
+    console.log(typeof(testId));
+    console.log(typeof(subject));
+    console.log(typeof(mode));
+    console.log(typeof(className));
+    console.log(typeof(selectedOptions));
+    console.log(typeof(user_id));
+  
+    console.log(testId , subject , mode , className , selectedOptions , user_id);
+    const selectedOptionsArr = JSON.parse(selectedOptions);
+    console.log(selectedOptionsArr);
+    // Fetch correctOption from the 'questions' table based on the received parameters
+    const fetchQuery = `SELECT correct_option FROM questions WHERE test_set_id = ? AND subject = ? AND mode = ? AND class = ?`;
+    connection.query(fetchQuery, [testId, subject, mode, className], (error, results) => {
       if (error) {
-        console.error('Error saving user history:', error);
+        console.error('Error fetching correctOption:', error);
         res.status(500).json({ error: 'Internal Server Error' });
         return;
       }
-
-      // Send the response to the frontend
-      res.status(200).json({
-        rightAnswers,
-        rightQuestionNo,
-        wrongAnswers,
-        wrongQuestionNo,
-        complete,
-        totalQuestionNo
+  
+      const correctOptions = results.map(result => result.correct_option);
+  
+      // Calculate the rightAnswers, wrongAnswers, rightQuestionNo, wrongQuestionNo, complete, and totalQuestionNo
+      let rightAnswers = 0;
+      let rightQuestionNo = [];
+      let wrongAnswers = 0;
+      let wrongQuestionNo = [];
+      let notComplete = 0;
+      let complete = 0;
+      const totalQuestionNo = correctOptions.length;
+  
+      console.log(typeof(selectedOptionsArr));
+  
+      selectedOptionsArr.forEach((option, index) => {
+        if (option === correctOptions[index] && option !== 'Not Selected') {
+          rightAnswers++;
+          rightQuestionNo.push(index+1);
+        }
+        else if(option === 'Not Selected'){
+          notComplete++;
+          wrongAnswers++;
+        } else {
+          wrongAnswers++;
+          wrongQuestionNo.push(index+1); 
+        }
       });
-   });
-  });
+  
+      complete = ((rightAnswers + wrongAnswers-notComplete) / totalQuestionNo) * 100;
+  
+      // Convert selectedOption array to a string
+      const selectedOptionString = selectedOptionsArr.join('+');
+  
+      // Save the data into the user_history table
+      const saveQuery = `INSERT INTO user_history (user_id, test_set_id, selectedOptions, score) VALUES (?, ?, ?, ?)`;
+      connection.query(saveQuery, [user_id, testId, selectedOptionString, rightAnswers], (error, results) => {
+        if (error) {
+          console.error('Error saving user history:', error);
+          res.status(500).json({ error: 'Internal Server Error' });
+          return;
+        }
+  
+        // Send the response to the frontend
+        res.status(200).json({
+          rightAnswers,
+          rightQuestionNo,
+          wrongAnswers,
+          wrongQuestionNo,
+          complete,
+          totalQuestionNo
+        });
+     });
+    });
+  }
+  catch(err){
+    res.status(500).json(err);
+  }
+ 
 });
 
 
