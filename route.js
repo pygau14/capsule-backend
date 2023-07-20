@@ -231,6 +231,7 @@ router.post('/calculateResults',upload.none(), async  (req, res) => {
     });
   }
   catch(err){
+    console.log(err);
     res.status(500).json(err);
   }
  
