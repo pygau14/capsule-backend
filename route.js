@@ -38,6 +38,10 @@ router.get('/classes', (req, res) => {
   });
 });
 
+// Middleware to serve static files from the subject_images folder
+router.use('/subject_images', express.static(path.join(__dirname, 'subject_images')));
+
+
 // Route to get subjects for a particular class
 router.get('/subjects/:classId', (req, res) => {
   const classId = req.params.classId;
@@ -56,7 +60,7 @@ router.get('/subjects/:classId', (req, res) => {
     }
 
     // Append the base URL of your server if the images are hosted on a different domain.
-    const baseUrl = 'http://your-server-url/';
+    const baseUrl = 'https://capsule-backend-wep6.onrender.com';
 
     // Modify the response to include the full URL for subject_picture
     const subjectsWithUrl = results.map((subject) => ({
