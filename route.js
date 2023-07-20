@@ -206,11 +206,11 @@ router.post('/calculateResults',upload.none(), async  (req, res) => {
       console.log(typeof(selectedOptionsArr));
   
       selectedOptionsArr.forEach((option, index) => {
-        if (option === correctOptions[index] && option !== 'Not Selected') {
+        if (option == correctOptions[index] && option !== 'Not Selected') {
           rightAnswers++;
           rightQuestionNo.push(index+1);
         }
-        else if(option === 'Not Selected'){
+        else if(option == 'Not Selected'){
           notComplete++;
           wrongAnswers++;
         } else {
