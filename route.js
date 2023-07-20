@@ -166,8 +166,23 @@ router.post('/calculateResults',upload.none(), async  (req, res) => {
     console.log(typeof(user_id));
   
     console.log(testId , subject , mode , className , selectedOptions , user_id);
-    const selectedOptionsArr = JSON.parse(selectedOptions);
-    console.log(selectedOptionsArr);
+    // Parse the selectedOptions if it's a JSON string, or use it directly if it's an array
+  let selectedOptionsArr;
+  if (typeof selectedOptions === 'string') {
+    try {
+      selectedOptionsArr = JSON.parse(selectedOptions);
+    } catch (error) {
+      console.error('Error parsing selectedOptions JSON:', error);
+      res.status(400).json({ error: 'Invalid selectedOptions format' });
+      return;
+    }
+  } else if (Array.isArray(selectedOptions)) {
+    selectedOptionsArr = selectedOptions;
+  } else {
+    console.error('Invalid selectedOptions format:', typeof selectedOptions);
+    res.status(400).json({ error: 'Invalid selectedOptions format' });
+    return;
+  }
     // Fetch correctOption from the 'questions' table based on the received parameters
     const fetchQuery = `SELECT correct_option FROM questions WHERE test_set_id = ? AND subject = ? AND mode = ? AND class = ?`;
     connection.query(fetchQuery, [testId, subject, mode, className], (error, results) => {
