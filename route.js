@@ -40,28 +40,33 @@ router.get('/classes', (req, res) => {
 
 // Route to get subjects for a particular class
 router.get('/subjects/:classId', (req, res) => {
-const classId = req.params.classId;
-
+  const classId = req.params.classId;
 
   const query = `
-    SELECT s.subject_name
+    SELECT s.id AS subject_id, s.subject_name, CONCAT('/subject_images/', s.subject_picture, '.jpg') AS subject_picture
     FROM subjects s
     JOIN class_subjects cs ON cs.subject_id = s.id
     WHERE cs.class_id = ?
   `;
 
   connection.query(query, [classId], (err, results) => {
-    
-
     if (err) {
       console.error('Error executing MySQL query:', err);
       return res.status(500).json({ error: 'Database error' });
     }
 
-    res.status(200).json(results);
+    // Append the base URL of your server if the images are hosted on a different domain.
+    const baseUrl = 'http://your-server-url/';
+
+    // Modify the response to include the full URL for subject_picture
+    const subjectsWithUrl = results.map((subject) => ({
+      ...subject,
+      subject_picture: baseUrl + subject.subject_picture,
+    }));
+
+    res.status(200).json(subjectsWithUrl);
   });
 });
-
 
 
 // Route 1: Get chapters based on class and subject
@@ -240,7 +245,8 @@ router.post('/calculateResults',upload.none(), async  (req, res) => {
           wrongAnswers,
           wrongQuestionNo,
           complete,
-          totalQuestionNo
+          totalQuestionNo,
+          correctOptions
         });
      });
     });
