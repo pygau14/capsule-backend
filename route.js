@@ -47,7 +47,7 @@ router.get('/subjects/:classId', (req, res) => {
   const classId = req.params.classId;
 
   const query = `
-    SELECT s.id AS subject_id, s.subject_name, CONCAT('/subject_images/', s.subject_picture, '.jpg') AS subject_picture
+    SELECT s.id AS subject_id, s.subject_name, CONCAT('/subject_images/', s.subject_picture) AS subject_picture
     FROM subjects s
     JOIN class_subjects cs ON cs.subject_id = s.id
     WHERE cs.class_id = ?
