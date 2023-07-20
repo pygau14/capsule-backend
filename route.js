@@ -157,6 +157,14 @@ router.post('/chapters',upload.none(), (req, res) => {
 //route to calculate score
 router.post('/calculateResults',upload.none(), async  (req, res) => {
   const { testId, subject, mode, className, selectedOptions, user_id } = req.body;
+  console.log(typeof(testId));
+  console.log(typeof(subject));
+  console.log(typeof(mode));
+  console.log(typeof(className));
+  console.log(typeof(selectedOptions));
+  console.log(typeof(user_id));
+
+  console.log(testId , subject , mode , className , selectedOptions , user_id);
   const selectedOptionsArr = JSON.parse(selectedOptions);
   console.log(selectedOptionsArr);
   // Fetch correctOption from the 'questions' table based on the received parameters
