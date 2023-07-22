@@ -244,6 +244,10 @@ router.post('/calculateResults',upload.none(), async  (req, res) => {
           res.status(500).json({ error: 'Internal Server Error' });
           return;
         }
+
+        const correctPercentage = (parseInt(rightAnswers)/parseInt(totalQuestionNo))*100;
+        const incorrectPercentage = (wrongQuestionNo.length / parseInt(totalQuestionNo))*100;
+        const skippedPercentage = ((parseInt(wrongAnswers)-wrongQuestionNo.length)/parseInt(totalQuestionNo))*100;
   
         // Send the response to the frontend
         res.status(200).json({
@@ -253,7 +257,10 @@ router.post('/calculateResults',upload.none(), async  (req, res) => {
           wrongQuestionNo,
           complete,
           totalQuestionNo,
-          correctOptions
+          correctOptions,
+          correctPercentage,
+          incorrectPercentage,
+          skippedPercentage
         });
      });
     });
