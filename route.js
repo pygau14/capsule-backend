@@ -62,13 +62,16 @@ router.get('/subjects/:classId', (req, res) => {
     // Append the base URL of your server if the images are hosted on a different domain.
     const baseUrl = 'https://capsule-backend-wep6.onrender.com';
 
-    // Modify the response to include the full URL for subject_picture
-    const subjectsWithUrl = results.map((subject) => ({
-      ...subject,
-      subject_picture: baseUrl + subject.subject_picture,
-    }));
+   // Filter out subjects with an empty subject_name
+   const filteredSubjects = results.filter((subject) => subject.subject_name !== "");
 
-    res.status(200).json(subjectsWithUrl);
+   // Modify the response to include the full URL for subject_picture
+   const subjectsWithUrl = filteredSubjects.map((subject) => ({
+     ...subject,
+     subject_picture: baseUrl + subject.subject_picture,
+   }));
+
+   res.status(200).json(subjectsWithUrl);
   });
 });
 
