@@ -501,7 +501,7 @@ router.get('/fetchBooks/:user_id',upload.none(), (req, res) => {
 
       // Fetch book information from books table
       connection.query(
-        'SELECT class, subject, book_name, book_icon_filename, ebook_filename FROM books WHERE id IN (?)',
+        'SELECT class, subject, book_name, book_icon_filename, ebook_filename , book_des FROM books WHERE id IN (?)',
         [bookIds],
         (err, results) => {
           if (err) {
@@ -513,6 +513,7 @@ router.get('/fetchBooks/:user_id',upload.none(), (req, res) => {
             class: row.class,
             subject: row.subject,
             book_name: row.book_name,
+            book_description : row.book_des,
             book_icon_url: "https://capsule-backend-wep6.onrender.com/book-icon/"+row.book_icon_filename,
             ebook_pdf_url: "https://capsule-backend-wep6.onrender.com/ebook-pdf/"+row.ebook_filename,
           }));
