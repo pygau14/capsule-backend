@@ -442,15 +442,34 @@ router.get('/fetchData/:history_id',upload.none(), (req, res) => {
             return res.status(500).json({ error: 'Failed to fetch questions' });
           }
 
-          const data = results.map((row) => ({
-            question: row.question,
-            option1: row.option1,
-            option2: row.option2,
-            option3: row.option3,
-            option4: row.option4,
-            correct_option: row.correct_option,
-            selectedOption: selectedOptionsArray.shift() || null,
-          }));
+          // const data = results.map((row) => ({
+          //   const options = [];
+
+
+          //   question: row.question,
+          //   option1: row.option1,
+          //   option2: row.option2,
+          //   option3: row.option3,
+          //   option4: row.option4,
+          //   correct_option: row.correct_option,
+          //   selectedOption: selectedOptionsArray.shift() || null,
+          // }));
+
+          const data = results.map((row)=>{
+            const options = [];
+
+            if(row.option1) options.push(row.option1);
+            if(row.option2) options.push(row.option2);
+            if(row.option3) options.push(row.option3);
+            if(row.option4) options.push(row.option4);
+
+            return {
+              question : row.question,
+              option : options,
+              correct_option : row.correct_option,
+              selectedOption : selectedOptionsArray.shift() || null,
+            }
+          })
 
           res.json(data);
         }
